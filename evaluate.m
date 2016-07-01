@@ -14,13 +14,13 @@ load('learned_model.mat', 'fit', 'offsets', 'scales');
 % [datapoints data] = createDatapoints(dataset,maxNumberOfDatapoints);
 % input_colors = data(testingPts, :, :)
 % input_colors = [];
-input_colors = [
-    0.3451    0.5490    0.5490;
-    0.2863    0.4196    0.4510;
-    0.7490    0.8196    0.8510;
-    0.5765    0.6824    0.7490;
-    0.4510    0.2118    0.2549;
-];
+%input_colors = [
+    %0.3451    0.5490    0.5490;
+    %0.2863    0.4196    0.4510;
+    %0.7490    0.8196    0.8510;
+    %0.5765    0.6824    0.7490;
+    %0.4510    0.2118    0.2549;
+%];
 input_colors = transpose(input_colors);
 input = [];
 for i=1:3
