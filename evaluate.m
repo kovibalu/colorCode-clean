@@ -21,10 +21,11 @@ load('learned_model.mat', 'fit', 'offsets', 'scales');
     %0.5765    0.6824    0.7490;
     %0.4510    0.2118    0.2549;
 %];
-input_colors = transpose(input_colors);
-input = [];
-for i=1:3
-    input(:, :, i) = input_colors(i, :);
+%input_colors = transpose(input_colors);
+P = perms(1:size(input_colors,1));
+input = zeros(size(P, 1), size(input_colors, 1), size(input_colors, 2));
+for p=1:size(P, 1)
+	input(p, :, :) = input_colors(P(p, :), :);
 end
 % input_colors(:, :, 1) = [0.3451    0.2863    0.7490    0.5765    0.4510];
 % input_colors(:, :, 2) = [0.5490    0.4196    0.8196    0.6824    0.2118];
@@ -43,6 +44,7 @@ for i=1:size(features,2)
 end
 
 testingPrediction = glmnetPredict(fit, 'response', features);
+testingPrediction = max(testingPrediction)
 
 fileID = fopen('result.txt', 'w');
 fprintf(fileID, '{"result": %f}', testingPrediction);
